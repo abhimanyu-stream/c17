@@ -2,18 +2,21 @@
 #include <stdlib.h>
 
 // Define a Node for the linked list
-typedef struct Node {
+typedef struct Node
+{
     int data;
     struct Node *next;
 } Node;
 
 // Define a LinkedList structure
-typedef struct LinkedList {
+typedef struct LinkedList
+{
     Node *head;
 } LinkedList;
 
 // Define a Stack structure (using linked list as the underlying data structure)
-typedef struct Stack {
+typedef struct Stack
+{
     Node *top;
 } Stack;
 
@@ -28,7 +31,8 @@ void stack_display(const Stack *stack);
 void cleanup_linked_list(LinkedList *list);
 void cleanup_stack(Stack *stack);
 
-int main() {
+int main()
+{
     printf("Hello World struct in C program\n");
 
     // Working with LinkedList
@@ -61,9 +65,11 @@ int main() {
 }
 
 // Create a new node
-Node *create_node(int data) {
+Node *create_node(int data)
+{
     Node *new_node = (Node *)malloc(sizeof(Node));
-    if (!new_node) {
+    if (!new_node)
+    {
         fprintf(stderr, "Memory allocation failed\n");
         exit(EXIT_FAILURE);
     }
@@ -73,16 +79,19 @@ Node *create_node(int data) {
 }
 
 // Insert a new node at the front of the linked list
-void linked_list_insert_front(LinkedList *list, int data) {
+void linked_list_insert_front(LinkedList *list, int data)
+{
     Node *new_node = create_node(data);
     new_node->next = list->head;
     list->head = new_node;
 }
 
 // Display the contents of the linked list
-void linked_list_display(const LinkedList *list) {
+void linked_list_display(const LinkedList *list)
+{
     Node *current = list->head;
-    while (current) {
+    while (current)
+    {
         printf("%d -> ", current->data);
         current = current->next;
     }
@@ -90,15 +99,18 @@ void linked_list_display(const LinkedList *list) {
 }
 
 // Push an element onto the stack
-void stack_push(Stack *stack, int data) {
+void stack_push(Stack *stack, int data)
+{
     Node *new_node = create_node(data);
     new_node->next = stack->top;
     stack->top = new_node;
 }
 
 // Pop an element from the stack
-int stack_pop(Stack *stack) {
-    if (!stack->top) {
+int stack_pop(Stack *stack)
+{
+    if (!stack->top)
+    {
         fprintf(stderr, "Stack underflow\n");
         exit(EXIT_FAILURE);
     }
@@ -110,8 +122,10 @@ int stack_pop(Stack *stack) {
 }
 
 // Peek at the top element of the stack
-int stack_peek(const Stack *stack) {
-    if (!stack->top) {
+int stack_peek(const Stack *stack)
+{
+    if (!stack->top)
+    {
         fprintf(stderr, "Stack is empty\n");
         exit(EXIT_FAILURE);
     }
@@ -119,18 +133,22 @@ int stack_peek(const Stack *stack) {
 }
 
 // Display the contents of the stack
-void stack_display(const Stack *stack) {
+void stack_display(const Stack *stack)
+{
     Node *current = stack->top;
-    while (current) {
+    while (current)
+    {
         printf("%d\n", current->data);
         current = current->next;
     }
 }
 
 // Cleanup the linked list and free memory
-void cleanup_linked_list(LinkedList *list) {
+void cleanup_linked_list(LinkedList *list)
+{
     Node *current = list->head;
-    while (current) {
+    while (current)
+    {
         Node *temp = current;
         current = current->next;
         free(temp);
@@ -139,9 +157,11 @@ void cleanup_linked_list(LinkedList *list) {
 }
 
 // Cleanup the stack and free memory
-void cleanup_stack(Stack *stack) {
+void cleanup_stack(Stack *stack)
+{
     Node *current = stack->top;
-    while (current) {
+    while (current)
+    {
         Node *temp = current;
         current = current->next;
         free(temp);
