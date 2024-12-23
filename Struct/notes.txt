@@ -1,0 +1,90 @@
+Here’s a simple Makefile tailored for compiling your C program on Windows using the MinGW-w64 GCC compiler.
+
+Makefile
+makefile
+Copy code
+# Compiler
+CC = gcc
+
+# Compiler flags
+CFLAGS = -Wall -Wextra -std=c99
+
+# Target executable name
+TARGET = hello_world.exe
+
+# Source files
+SRC = main.c
+
+# Build rules
+all: $(TARGET)
+
+$(TARGET): $(SRC)
+	$(CC) $(CFLAGS) -o $(TARGET) $(SRC)
+
+# Clean rule to remove the compiled executable
+clean:
+	del /f $(TARGET)
+Explanation of Each Section
+Compiler
+
+makefile
+Copy code
+CC = gcc
+Specifies the compiler to use (gcc).
+
+Compiler Flags
+
+makefile
+Copy code
+CFLAGS = -Wall -Wextra -std=c99
+-Wall: Enables most warnings.
+-Wextra: Enables extra warnings.
+-std=c99: Ensures the program adheres to the C99 standard.
+Target Name
+
+makefile
+Copy code
+TARGET = hello_world.exe
+Defines the name of the output executable. On Windows, executables usually have a .exe extension.
+
+Source File
+
+makefile
+Copy code
+SRC = main.c
+Specifies the source file(s) to compile.
+
+Build Rule
+
+makefile
+Copy code
+all: $(TARGET)
+The all rule is the default and will build the executable.
+
+makefile
+Copy code
+$(TARGET): $(SRC)
+	$(CC) $(CFLAGS) -o $(TARGET) $(SRC)
+This rule compiles the main.c file into the hello_world.exe executable.
+
+Clean Rule
+
+makefile
+Copy code
+clean:
+	del /f $(TARGET)
+Deletes the generated executable (hello_world.exe) using the Windows del command.
+
+Usage
+Save the Makefile in the same directory as your main.c.
+Open a terminal in that directory (e.g., Command Prompt, PowerShell, or Git Bash).
+Run the following commands:
+To build the program:
+bash
+Copy code
+mingw32-make
+To clean the build:
+bash
+Copy code
+mingw32-make clean
+Note: Ensure mingw32-make is in your PATH. If it isn't, use the full path to mingw32-make when running the command.
